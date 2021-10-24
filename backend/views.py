@@ -112,10 +112,21 @@ class Contact(View):
             "message": "Thank You, we got your message and will get back to you."
         })
 
+def checkout(request, num):
+    return render(request, "backend/checkout.html", {
+        'num': num,
+        'total': 5 * num,
+    })
+
 class Rubies(View):
     template = "backend/buy_rubies.html"
+    success_url = "backend:checkout"
 
     def get(self, request):
         if not request.user.is_authenticated:
             return HttpResponseRedirect(reverse("backend:registration"))
         return render(request, self.template)
+
+    def post(self, request):
+        num = request.POST['num']
+        return HttpResponseRedirect(reverse(self.success_url, kwargs={'num':num, }))
