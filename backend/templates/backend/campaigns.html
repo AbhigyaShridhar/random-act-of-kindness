@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block title %}
+  Campaigns
+{% endblock %}
+
+{% block main %}
+  <main class="page blog-post-list">
+      <section class="text-light bg-dark border-warning shadow-lg clean-block clean-blog-list dark">
+          <div class="container">
+              <div class="block-heading">
+                  <div class="clean-block add-on newsletter-sign-up"><input type="text" class="form-control" placeholder="Email"><button class="btn btn-outline-primary" type="button">Search</button></div>
+                  <h2 class="text-info">Active Campaigns</h2>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo.</p>
+              </div>
+              {% for c in campaigns %}
+                <div class="text-light bg-dark bg-gradient border-warning shadow-lg block-content">
+                    <div class="clean-blog-post">
+                        <div class="row">
+                            <div class="col-lg-5"><img class="rounded img-fluid" src="{% url 'backend:logo' c.id %}"></div>
+                            <div class="col-lg-7">
+                                <h3>{{ c.title }}</h3>
+                                <div class="info"><span class="text-muted">{{ c.title }} by&nbsp;<a href="#">{{ c.organisation.registrant.first_name }} {{ c.organisation.registrant.last_name }}</a></span></div>
+                                <p>{{ c.description }}</p><a href="{% url 'backend:campaign' c.id %}"><button class="btn btn-outline-primary btn-sm" type="button">Read More</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              {% endfor %}
+          </div>
+      </section>
+  </main>
+{% endblock %}

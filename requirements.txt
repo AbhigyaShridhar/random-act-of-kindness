@@ -1,0 +1,7 @@
+psycopg2-binary
+django
+django-cockroachdb
+dj-database-url
+django-summernote
+django_crispy_forms
+dj-database-url

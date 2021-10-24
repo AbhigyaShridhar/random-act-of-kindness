@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+  {{ request.user.first_name }}
+{% endblock %}
+
+{% block main %}
+  <main class="page">
+      <section class="text-light bg-dark shadow-lg clean-block about-us">
+          <div class="container">
+              <div class="block-heading">
+                  <h2 class="text-info">Profile</h2>
+                  <p>Contributor, Member Since - {{ user.created_at }}</p>
+              </div>
+              <div class="row justify-content-center">
+                  <div class="col-sm-6 col-lg-4">
+                      <div class="card text-center clean-card"><img class="card-img-top w-100 d-block" src="assets/img/avatars/avatar2.jpg">
+                          <div class="card-body bg-dark bg-gradient shadow-lg info">
+                              <p class="card-text">{{ user.first_name }} {{ user.last_name }}</p>
+                              <div class="icons"><a href="#"><i class="icon-social-facebook"></i></a><a href="#"><i class="icon-social-instagram"></i></a><a href="#"><i class="icon-social-twitter"></i></a></div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <section class="clean-block features">
+              <div class="container">
+                  <div class="row justify-content-center">
+                      <div class="col-md-5 feature-box"><i class="icon-diamond icon"></i>
+                          <h4>Contributions made - {{ user.contrib }}</h4>
+                      </div>
+                  </div>
+              </div>
+          </section>
+          <section class="bg-dark border-warning shadow-lg clean-block clean-form dark">
+              <div class="container">
+                  <div class="block-heading">
+                      <h2 class="text-info">Update Profile</h2>
+                  </div>
+                  <form class="bg-dark bg-gradient border-warning shadow-lg" method="post" action="{% url 'backend:update_profile' %}">
+                    {% csrf_token %}
+                      <div class="mb-3">
+                          {{ form | crispy }}
+                      </div><input class="btn btn-primary" type="submit" value="Update Profile"/>
+                  </form>
+              </div>
+          </section>
+      </section>
+  </main>
+{% endblock %}

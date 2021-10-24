@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html class="text-dark">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
+    <link rel="stylesheet" href="{% static 'css/simple-line-icons.min.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+    <link rel="stylesheet" href="{% static 'css/vanilla-zoom.min.css' %}">
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-lg fixed-top textwhite bg-success text-white clean-navbar">
+        <div class="container"><a class="navbar-brand link-light logo" href="{% url 'backend:index' %}">Home</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse text-light" id="navcol-1">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'backend:faq' %}">FAQs</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'backend:donate' %}">Donate</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'backend:contact' %}">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'backend:campaigns' %}">Campaigns</a></li>
+                    {% if request.user.is_authenticated %}
+                      <li class="nav-item"><a class="nav-link" href="{% url 'backend:profile' request.user.id %}">Profile</a></li>
+                      <li class="nav-item"><a class="nav-link" href="{% url 'backend:logout' %}">Logout</a></li>
+                    {% else %}
+                      <li class="nav-item"><a class="nav-link" href="{% url 'backend:registration' %}">Register</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {% block main %}
+
+    {% endblock %}
+    <footer class="bg-dark bg-gradient page-footer dark"></footer>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+    <script src="{% static 'js/vanilla-zoom.js' %}"></script>
+    <script src="{% static 'js/theme.js' %}"></script>
+</body>
+
+</html>

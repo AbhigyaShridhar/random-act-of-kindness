@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+  Donate
+{% endblock %}
+
+{% block main %}
+  <main class="page pricing-table-page">
+      <section class="text-light bg-dark clean-block clean-pricing dark">
+          <div class="container">
+              <div class="block-heading">
+                  <h2 class="text-info">Buy the world some Rubies...</h2>
+                  <p>All the transactions happen through Rubies! The Money you donate on this website will be added to the pool from which campaigns will get their share, and for that you will have to buy rubies, each of which is individually traceable, so you know what's being done with your money...</p>
+              </div>
+              <div class="row justify-content-center">
+                  <div class="col-md-5 col-lg-4">
+                      <div class="bg-secondary border-warning shadow-lg clean-pricing-item">
+                          <div class="heading">
+                              <h3>Cost</h3>
+                          </div>
+                          <p><i class="icon-diamond icon"></i></p>
+                          <div class="features">
+                              <h4><span class="feature">Bought On:&nbsp;</span><span>Date</span></h4>
+                          </div>
+                          <div class="price">
+                              <h4>$5 for one</h4>
+                          </div>
+                          <section class="bg-dark clean-block clean-form dark">
+                              <div class="container bg-dark bg-gradient shadow-lg">
+                                  <div class="block-heading">
+                                      <p>How Many would you like to donate?</p>
+                                  </div>
+                                  <form class="bg-secondary border-warning shadow-lg" method="post" action="{% url 'backend:donate' %}" id="f1">
+                                    {% csrf_token %}
+                                      <div class="mb-3">
+                                          {{ form | crispy }}
+                                      </div>
+                                  </form>
+                              </div>
+                          </section><button class="btn btn-primary d-block w-100" type="submit" form="f1">Donate</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+  </main>
+{% endblock %}
