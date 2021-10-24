@@ -10,9 +10,10 @@ urlpatterns = [
     path('contact-us', views.Contact.as_view(), name='contact'),
     path('accounts/register', views.Register.as_view(), name='registration'),
     path('accounts/login', views.Login.as_view(), name='login'),
-    path('accounts/logout', views.index, name='logout'),
+    path('accounts/logout', views.logout_view, name='logout'),
     path('rubies/donate', views.Rubies.as_view(), name='donate'),
     path('profile/<str:pk>', views.profile, name='profile'),
     path('active/campaigns', views.index, name='campaigns'),
     path('profile/update', views.index, name='update_profile'),
+    path('checkout/<int:num>', views.checkout, name="checkout"),
 ]
